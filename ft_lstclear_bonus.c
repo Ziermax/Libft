@@ -6,7 +6,7 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:16:43 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/01/18 18:11:33 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/28 16:53:31 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	while (aux)
 	{
 		tmp = aux->next;
-		(*del)(aux);
+		(*del)(aux->content);
+		free(aux);
 		aux = tmp;
 	}
-	*lst = 0;
+	*lst = NULL;
 }

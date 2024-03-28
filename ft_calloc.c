@@ -6,7 +6,7 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 14:08:10 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/01/19 17:16:32 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/28 15:05:29 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,10 @@ void	*ft_calloc(size_t count, size_t size)
 
 	rtrn = malloc(sizeof(char) * count * size);
 	if (!rtrn)
-		return (0);
+		return (NULL);
 	i = 0;
-	while (i < count * size)
-	{
-		rtrn[i] = 0;
-		i++;
-	}
+	count = count * size;
+	while (i < count)
+		rtrn[i++] = 0;
 	return (rtrn);
 }

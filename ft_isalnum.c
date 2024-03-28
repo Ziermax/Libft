@@ -6,17 +6,12 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 21:39:34 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/01/05 21:43:53 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/28 15:07:46 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isalnum(int c)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	if (c >= 'a' && c <= 'z')
-		return (1);
-	if (c >= 'A' && c <= 'Z')
-		return (1);
-	return (0);
+	return ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z')
+		|| (c >= 'A' && c <= 'Z'));
 }

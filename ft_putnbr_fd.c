@@ -6,7 +6,7 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 18:44:54 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/01/21 19:50:02 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/28 15:48:28 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_putnbr_fd(int n, int fd)
 {
 	char	c;
 
-	if (fd < 0 || fd == 2147483617)
+	if (fd < 0 || fd > OPEN_MAX)
 		return ;
 	if (n == -2147483648)
 	{

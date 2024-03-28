@@ -6,7 +6,7 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:10:19 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/01/18 18:17:20 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/28 15:04:02 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	while (n)
-	{
-		*(char *)s = 0;
-		s++;
-		n--;
-	}
+	while (n--)
+		*(char *)s++ = 0;
 }

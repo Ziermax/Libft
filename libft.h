@@ -6,7 +6,7 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 15:14:01 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/01/21 19:41:33 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/28 16:42:13 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 
 typedef struct s_list
 {
@@ -40,11 +41,11 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr_fd(char *s, int fd);
-char	**ft_split(char const *s, char c);
+char	**ft_split(char *str, char c);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s1);
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char *str1, char *str2);
 int		ft_strlcat(char *dst, const char *src, size_t dstsize);
 int		ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlen(const char *s);

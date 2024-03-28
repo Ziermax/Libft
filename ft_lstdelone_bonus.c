@@ -6,7 +6,7 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:04:33 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/01/18 17:16:08 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/28 15:19:16 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,6 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
 	if (!lst || !(*del))
 		return ;
-	(*del)(lst);
+	(*del)(lst->content);
+	free(lst);
 }

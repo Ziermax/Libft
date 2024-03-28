@@ -6,7 +6,7 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 17:47:44 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/01/21 20:14:15 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/28 16:41:00 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int	static	ft_intlen(int n)
 {
 	int	len;
 
-	len = 0;
 	if (n == 0)
 		return (1);
+	len = 0;
 	while (n)
 	{
 		len++;
@@ -31,18 +31,19 @@ char static	*ft_edge_case(int n)
 {
 	char	*num;
 
+	num = NULL;
 	if (n == -2147483648)
 	{
 		num = malloc(sizeof(char) * 12);
 		if (!num)
-			return (0);
+			return (NULL);
 		ft_memmove(num, "-2147483648", 12);
 	}
-	if (n == 0)
+	else if (n == 0)
 	{
 		num = malloc (sizeof(char) * 2);
 		if (!num)
-			return (0);
+			return (NULL);
 		ft_memmove(num, "0", 2);
 	}
 	return (num);
@@ -58,14 +59,14 @@ char static	*ft_itoa_malloc(int *n, int *n_size)
 		*n *= -1;
 		num = malloc(sizeof(char) * (*n_size + 1));
 		if (!num)
-			return (0);
+			return (NULL);
 		*num = '-';
 	}
 	else
 		num = malloc(sizeof(char) * (*n_size + 1));
 	if (!num)
-		return (0);
-	num[*n_size] = 0;
+		return (NULL);
+	num[*n_size] = '\0';
 	return (num);
 }
 
@@ -74,13 +75,13 @@ char	*ft_itoa(int n)
 	char	*num;
 	int		n_size;
 
-	n_size = ft_intlen(n);
 	if (n == -2147483648 || n == 0)
 		return (ft_edge_case(n));
+	n_size = ft_intlen(n);
 	num = ft_itoa_malloc(&n, &n_size);
 	if (!num)
-		return (0);
-	while (n)
+		return (NULL);
+	while (n > 0)
 	{
 		num[n_size - 1] = n % 10 + '0';
 		n /= 10;

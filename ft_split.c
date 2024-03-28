@@ -6,91 +6,87 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 16:36:05 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/01/19 18:04:17 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/28 16:48:46 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_wordsinstr(char const *str, char c)
+static int	count_words(char *str, char c)
 {
-	int	count;
-	int	is_word;
+	int	words;
 
-	count = 0;
-	is_word = 0;
+	words = 0;
 	while (*str)
 	{
-		if (*str != c && !is_word)
-		{
-			is_word = 1;
-			count++;
-		}
-		else if (*str == c && is_word)
-			is_word = 0;
-		str++;
+		while (*str && *str == c)
+			str++;
+		if (*str)
+			words += 1;
+		while (*str && *str != c)
+			str++;
 	}
-	return (count);
+	return (words);
 }
 
-static char	*ft_strdupchar(char const *str, char c, int *position)
+static char	*get_word(char **position, char c)
 {
-	char	*newstr;
-	int		nstr_len;
-	int		i_nstr;
-	int		i;
+	char	*str;
+	char	*word;
+	int		len;
 
-	nstr_len = 0;
-	i_nstr = 0;
-	i = 0;
-	while (str[i] == c)
-		i++;
-	while (str[i + nstr_len] && str[i + nstr_len] != c)
-		nstr_len++;
-	newstr = malloc(sizeof(char) * (nstr_len + 1));
-	if (!newstr)
-		return (0);
-	while (i_nstr < nstr_len)
-		newstr[i_nstr++] = str[i++];
-	newstr[i_nstr] = 0;
-	*position += i;
-	return (newstr);
+	len = 0;
+	str = *position;
+	while (*str && *str == c)
+		str++;
+	while (str[len] && str[len] != c)
+		len++;
+	*position = &str[len];
+	if (!len)
+		return (NULL);
+	word = malloc(sizeof(char) * (len + 1));
+	if (!word)
+		return (NULL);
+	word[len--] = '\0';
+	while (len >= 0)
+	{
+		word[len] = str[len];
+		len--;
+	}
+	return (word);
 }
 
-static void	ft_free_split(char **split, int i_split)
+static void	free_split_char(char **split)
 {
 	int	i;
 
+	if (!split)
+		return ;
 	i = 0;
-	while (i < i_split)
+	while (split[i])
 		free(split[i++]);
 	free(split);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *str, char c)
 {
 	char	**split;
 	int		words;
-	int		i_str;
-	int		i_split;
+	int		i;
 
-	if (!s)
-		return (0);
-	i_str = 0;
-	i_split = 0;
-	words = ft_wordsinstr(s, c);
+	if (!str)
+		return (NULL);
+	words = count_words(str, c);
 	split = malloc(sizeof(char *) * (words + 1));
 	if (!split)
-		return (0);
-	while (i_split < words)
+		return (NULL);
+	i = 0;
+	while (i < words)
 	{
-		split[i_split] = ft_strdupchar(s + i_str, c, &i_str);
-		if (!split[i_split++])
-		{
-			ft_free_split(split, i_split - 1);
-			return (0);
-		}
+		split[i] = get_word(&str, c);
+		if (!split[i++])
+			return (free_split_char(split), NULL);
 	}
-	split[i_split] = 0;
+	split[i] = NULL;
 	return (split);
 }

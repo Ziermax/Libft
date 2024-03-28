@@ -6,7 +6,7 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:32:52 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/01/20 20:18:00 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/28 15:24:28 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ t_list	*ft_lstnew(void *content)
 
 	list = malloc(sizeof(t_list));
 	if (!list)
-		return (0);
+		return (NULL);
 	list->content = content;
-	list->next = 0;
+	list->next = NULL;
 	return (list);
 }

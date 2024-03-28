@@ -6,7 +6,7 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 15:12:38 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/01/21 18:01:48 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/28 16:13:05 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int		i;
 
 	if (!s1 || !set)
-		return (0);
+		return (NULL);
 	i = 0;
 	first = 0;
 	last = ft_strlen(s1);
@@ -41,9 +41,9 @@ char	*ft_strtrim(char const *s1, char const *set)
 		last--;
 	trim = malloc(sizeof(char) * (last - first + 1));
 	if (!trim)
-		return (0);
+		return (NULL);
 	while (first < last)
 		trim[i++] = s1[first++];
-	trim[i] = 0;
+	trim[i] = '\0';
 	return (trim);
 }
